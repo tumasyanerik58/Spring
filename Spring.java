@@ -139,5 +139,29 @@ public class Spring {
             }
             return new Spring(k);
         }
+
+        public static Double fftMock(double num){
+            return Math.pow(num,2);
+        }
+
+        public static Number bitToNumber(String bit_num){
+            ArrayList<Spring> bit_strings = null;
+            for(int i = 1; i < 9; i++){
+                for(int j = 0; j < 8;j++){
+                    if(bit_num.charAt(j) != '0'){
+                        bit_strings.add(new Spring(i));
+                    }
+                }
+            }
+            ArrayList<Double> transformedList = null;
+            for(Spring spring: bit_strings){
+                transformedList.add(fftMock(spring.getStiffness()));
+            }
+            Double result = Double.valueOf(0);
+            for(Double number: transformedList){
+                result = result + Math.pow(2,number);
+            }
+            return result;
+        }
     }
 }
